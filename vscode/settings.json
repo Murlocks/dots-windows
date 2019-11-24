@@ -1,1 +1,42 @@
-C:/Users/rtianco/AppData/Roaming/Code/User/settings.json
+{
+    "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
+    "vscode-neovim.mouseSelectionVisualMode": true,
+    "vim.easymotion": true,
+    "vim.foldfix": true,
+    "vim.gdefault": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>", "l"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [":"],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        },
+        {
+            "before": [";"],
+            "after": [":"]
+        }
+    ],
+    "vim.replaceWithRegister": true,
+    "vim.sneak": true,
+    "vim.sneakReplacesF": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "vim.useSystemClipboard": true,
+    "vim.leader": ",",
+    "vim.camelCaseMotion.enable": true,
+    "mssql.connections": [
+        {
+            "server": "convdb2",
+            "database": "",
+            "authenticationType": "Integrated",
+            "password": ""
+        }
+    ]
+}
