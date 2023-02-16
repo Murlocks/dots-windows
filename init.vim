@@ -2,15 +2,23 @@
 
 " Environment " {{{
 
+" Clear & init vimrc augroup
+augroup vimrc
+    autocmd!
+    au FileType asciidoc setlocal spell
+    au FileType gitcommit setlocal spell
+    au FileType markdown setlocal spell
+    au FileType svn setlocal spell
+augroup END
+
 let mapleader = ','
 let localleader = '_'
 
 " set term=xterm-256color
 set t_Co=256
 
-" load bundles
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
+if filereadable(expand('<sfile>:h') . '/init/plugins.vim')
+    source <sfile>:h/init/plugins.vim
 endif
 
 let g:netrw_browsex_viewer = "chrome.exe"
@@ -51,13 +59,42 @@ set tags=.tags,./tags,tags,../tags,~/.vimtags
 " folding
 
 set foldlevelstart=0
-set foldmethod=marker
-" let &fmr = ' {{{, }}}'      " Put spaces between comment and marker- unneeded?
+" set foldmethod=marker
+" let &fmr = ' {{{, }}}'      " Put spaces between comment and marker
+" autocmd vimrc BufNewFile,BufRead * :let &cms = ' ' . &cms " preppend space before comment marker
 
 set backup
 set undofile
 set undolevels=1000
 set undoreload=10000
+
+if has('nvim')
+    " https://github.com/neovim/neovim/issues/2897#issuecomment-115464516
+    let g:terminal_color_0 = '#4e4e4e'
+    let g:terminal_color_1 = '#d68787'
+    let g:terminal_color_2 = '#5f865f'
+    let g:terminal_color_3 = '#d8af5f'
+    let g:terminal_color_4 = '#85add4'
+    let g:terminal_color_5 = '#d7afaf'
+    let g:terminal_color_6 = '#87afaf'
+    let g:terminal_color_7 = '#d0d0d0'
+    let g:terminal_color_8 = '#626262'
+    let g:terminal_color_9 = '#d75f87'
+    let g:terminal_color_10 = '#87af87'
+    let g:terminal_color_11 = '#ffd787'
+    let g:terminal_color_12 = '#add4fb'
+    let g:terminal_color_13 = '#ffafaf'
+    let g:terminal_color_14 = '#87d7d7'
+    let g:terminal_color_15 = '#e4e4e4'
+
+    set fillchars=vert:\|,fold:-  " restore vim defaults"
+    set inccommand=split
+
+    autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+endif
 
 " }}}
 
@@ -115,23 +152,9 @@ set splitright
 set splitbelow
 set pastetoggle=<F12>
 
-set formatoptions+=c
-set formatoptions+=q
-set formatoptions+=r
-set formatoptions+=n
-set formatoptions+=1
-set formatoptions+=j
+set formatoptions+=cqrn1j
 " don't auto continue line comments
 " autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Clear vimrc augroup
-augroup vimrc
-    autocmd!
-    au FileType asciidoc setlocal spell
-    au FileType gitcommit setlocal spell
-    au FileType markdown setlocal spell
-    au FileType svn setlocal spell
-augroup END
 
 " Smart numbering
 set nonumber
@@ -148,22 +171,8 @@ augroup linenumbers
     autocmd FocusGained * :set relativenumber
 augroup END
 
-autocmd vimrc FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd vimrc FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd InsertLeave <buffer> call StripTrailingWhitespace()
 
 " Statusline funs " {{{
-
-" set laststatus=1
-" " set statusline=%{expand('%:p')}
-" " set statusline+=%<\                          " cut at start
-" set statusline+=%f\                            " file name
-" set statusline+=%h%m%r%w                       " flags
-" set statusline+=%=                             " right align
-" set statusline+=[%{strlen(&ft)?&ft:'none'},    " filetype
-" set statusline+=%{strlen(&fenc)?&fenc:&enc},   " encoding
-" set statusline+=%{&fileformat}]                " file format
-" set statusline+=%-8(\ (%l,%c)\ %)%P                  " line and column
-" " set statusline+=%<%P                           " percentage of file
 
 " statusline setup
 set statusline =%#identifier#
@@ -208,7 +217,7 @@ set statusline+=%#identifier#
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 set statusline+=%*
 
-set statusline+=%#identifier#
+set statusline+=%#warningmsg#
 set statusline+=%{StatuslineLongLineWarning()}
 set statusline+=%*
 
@@ -224,7 +233,10 @@ set statusline+=%*
 set statusline+=%=      "left/right separator
 set statusline+=%#warningmsg#
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
+set statusline+=%(%{StatuslineCurrentHighlight()}\ \ %)
+set statusline+=%*
+
+set statusline+=%#identifier#
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
@@ -345,6 +357,18 @@ function! s:Median(nums)
     endif
 endfunction
 
+" set laststatus=1
+" " set statusline=%{expand('%:p')}
+" " set statusline+=%<\                          " cut at start
+" set statusline+=%f\                            " file name
+" set statusline+=%h%m%r%w                       " flags
+" set statusline+=%=                             " right align
+" set statusline+=[%{strlen(&ft)?&ft:'none'},    " filetype
+" set statusline+=%{strlen(&fenc)?&fenc:&enc},   " encoding
+" set statusline+=%{&fileformat}]                " file format
+" set statusline+=%-8(\ (%l,%c)\ %)%P                  " line and column
+
+" " set statusline+=%<%P                           " percentage of file
 " set statusline=%<%f\                     " Filename
 " set statusline+=%w%h%m%r                 " Options
 " set statusline+=%{fugitive#statusline()} " Git Hotness
@@ -408,13 +432,17 @@ map [] k$][%?}<CR>
 "paste in insertmode
 " inoremap <C-v> <C-r>+
 
-" Easier moving in tabs and windows
-" The lines conflict with the default digraph mapping of <C-K>
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-L> <C-W>l
-noremap <C-H> <C-W>h
-"nnoremap <BS> <C-W>h<C-W> "C-H bugged in nvim
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+
+if has('nvim')
+  tnoremap <C-h> <c-\><c-n><c-w>h
+  tnoremap <C-j> <c-\><c-n><c-w>j
+  tnoremap <C-k> <c-\><c-n><c-w>k
+  tnoremap <C-l> <c-\><c-n><c-w>l
+endif
 
 " Scroll the window next to the current one
 "   (especially useful for two-window split)
@@ -464,9 +492,9 @@ xnoremap <C-up> y`<Pgv
 vnoremap D y`]pgv
 
 " swap word under the cursor with previous word on the left
-nnoremap <M-l>  "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o><C-l>
+nnoremap <M-h>  "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o><C-l>
 " swap word under the cursor with next word on the right
-nnoremap <M-h> "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o>/\w\+\_W\+<CR><C-l>
+nnoremap <M-l> "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o>/\w\+\_W\+<CR><C-l>
 " bubble lines up and down
 nnoremap <M-k> ddkP
 nnoremap <M-j> ddp
@@ -494,13 +522,13 @@ cnoremap cd. lcd %:p:h
 vnoremap < <gv
 vnoremap > >gv
 
-" better dot-repeatability
+" better dot-repeatability for search&replace
 nnoremap <space>; *``cgn
 nnoremap <space>, #``cgN
 
 " better buffer/tab closing!
-nnoremap <space>c :bd<CR>
-nnoremap <space>C :tabclose<CR>
+" nnoremap <space>c :bd<CR>
+" nnoremap <space>C :tabclose<CR>
 
 " "Focus" the current line.  Basically:
 "
@@ -519,16 +547,13 @@ vnoremap <Space>v za
 
 " super quick search and replace
 nnoremap <Space>x :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
-nnoremap <Space>%       :%s/\<<C-r>=expand("<cword>")<CR>\>/
+nnoremap <Space>% :%s/\<<C-r>=expand("<cword>")<CR>\>/
 
 " Make zO recursively open whatever fold we're in, even if it's partially open.
 nnoremap zO zczO
 
 " split edit vimrc
 nnoremap <leader>ev <C-w><C-s><C-l>:e $MYVIMRC<CR>
-
-" Strip whitespaces
-nnoremap <silent> <leader>ws :call StripTrailingWhitespace()<CR>
 
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
@@ -555,9 +580,13 @@ function! CustomFoldHeader() " {{{
     " expand tabs into spaces
     let onetab = strpart('          ', 0, &tabstop)
     let line = substitute(line, '\t', onetab, 'g')
+    let lineoffset = 3
+    if &foldmethod == 'marker'
+        let lineoffset = (len(&fmr)+1)/2 + 3
+    endif
 
-    let line = strpart(line, 0, windowwidth - 3 - len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 7
+    let line = strpart(line, 0, windowwidth - len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - lineoffset
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
 set foldtext=CustomFoldHeader() " }}}
@@ -638,8 +667,12 @@ function! StripTrailingWhitespace()
     let @/=_s
     call cursor(l, c)
 endfunction
+autocmd vimrc FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+autocmd vimrc FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd InsertLeave <buffer> call StripTrailingWhitespace()
+nnoremap <silent> <leader>ws :call StripTrailingWhitespace()<CR>
 
-function! s:RunShellCommand(cmdline)
+
+function! s:RunShellCommand(cmdline) " {{{
     botright new
 
     setlocal buftype=nofile
@@ -655,7 +688,7 @@ function! s:RunShellCommand(cmdline)
     execute 'silent $read !' . escape(a:cmdline, '%#')
     setlocal nomodifiable
     1
-endfunction
+endfunction " }}}
 
 command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
 " e.g. Grep current file for <search_term>: Shell grep -Hn <search_term> %
