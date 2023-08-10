@@ -63,6 +63,11 @@ local plugins = {
     end,
   },
 
+  {
+    "tpope/vim-surround",
+    keys = { "y", "d", "S" },
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
