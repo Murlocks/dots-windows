@@ -5,6 +5,11 @@
 " as an enforced single point of truth for Tridactyl's configuration.
 sanitize tridactyllocal tridactylsync
 
+" Use neovide, requires custom neovide.ps1 (pwsh) script
+set editorcmd start /min pwsh -noni -c neovide
+
+colourscheme --url https://raw.githubusercontent.com/bezmi/base16-tridactyl/master/base16-onedark.css personal-theme
+
 " Just use a blank page for new tab. It would be nicer to use the standard
 " Firefox homepage, but Tridactyl doesn't support this yet.
 " set newtab about:blank
@@ -12,12 +17,15 @@ sanitize tridactyllocal tridactylsync
 " Use vim in tmux for editor.
 " set editorcmd terminal -e tmux -u new vim -S /home/andrew/.vim/tridactyl.vim
 
+" Properly kill multiple windows
+bind ZZ !s powershell -command "ps firefox | stop-process -force"
+
 " Ctrl-F should use the browser's native 'find' functionality.
 unbind <C-f>
 
 " But also support Tridactyl search too.
-" bind / fillcmdline find
-" bind ? fillcmdline find -?
+bind / fillcmdline find
+bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 " Remove search highlighting.
