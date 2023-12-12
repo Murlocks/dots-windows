@@ -30,7 +30,18 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = overrides.treesitter
+    -- config = function()
+    --   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    --   parser_config.powershell = {
+    --     install_info = {
+    --       url = "https://github.com/jrsconfitto/tree-sitter-powershell",
+    --       files = {"src/parser.c"}
+    --     },
+    --     filetype = "ps1",
+    --     used_by = { "psm1", "psd1", "pssc", "psxml", "cdxml" }
+    --   }
+    -- end,
   },
 
   {
@@ -56,10 +67,12 @@ local plugins = {
   },
 
   {
-    "ggandor/lightspeed.nvim",
-    keys = { "s", "S", "t", "T", "f", "F" },
+    "ggandor/leap.nvim",
+    keys = { "s", "S", "gs", "x", "X" },
     config = function()
-      require("lightspeed").setup({ ignore_case = true, repeat_ft_with_target_char = true })
+      require("leap").add_default_mappings()
+      vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward-to)')
+      vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-backward-to)')
     end,
   },
 
@@ -67,6 +80,16 @@ local plugins = {
     "tpope/vim-surround",
     keys = { "y", "d", "S" },
   },
+
+  {
+    "tpope/vim-repeat",
+    keys = { "." },
+  },
+
+  {
+    "PProvost/vim-ps1",
+    ft = "ps1"
+  }
 
   -- To make a plugin not be loaded
   -- {
