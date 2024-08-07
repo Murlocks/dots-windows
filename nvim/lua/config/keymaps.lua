@@ -4,8 +4,14 @@
 
 local map = vim.keymap.set
 
+-- Mode Navigation
 map({ "n", "v" }, ";", ":", { desc = "Enter command mode" })
 map({ "i" }, "jk", "<esc>", { desc = "Enter normal mode" })
 
--- map("n", "<tab>", ":bnext<CR>", { desc = "Next tab" })
--- map("n", "<s-tab>", ":bprev<CR>", { desc = "Previous tab" })
+-- Buffer Navigation
+map("n", "<tab>", ":bnext<CR>", { desc = "Next tab" })
+map("n", "<s-tab>", ":bprev<CR>", { desc = "Previous tab" })
+
+-- Line Navigation
+map("n", "H", "^", { desc = "Start of line" })
+map("n", "L", "$", { desc = "End of line" })
