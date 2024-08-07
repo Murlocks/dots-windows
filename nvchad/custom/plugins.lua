@@ -17,12 +17,11 @@ local plugins = {
       },
     },
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
+      require("nvchad.configs.lspconfig").defaults()
+      require "configs.lspconfig"
+    end,
   },
 
-  -- override plugin configs
   {
     "williamboman/mason.nvim",
     opts = overrides.mason
@@ -30,18 +29,18 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter
-    -- config = function()
-    --   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-    --   parser_config.powershell = {
-    --     install_info = {
-    --       url = "https://github.com/jrsconfitto/tree-sitter-powershell",
-    --       files = {"src/parser.c"}
-    --     },
-    --     filetype = "ps1",
-    --     used_by = { "psm1", "psd1", "pssc", "psxml", "cdxml" }
-    --   }
-    -- end,
+    opts = overrides.treesitter,
+    config = function()
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.powershell = {
+        install_info = {
+          url = "https://github.com/jrsconfitto/tree-sitter-powershell",
+          files = {"src/parser.c"}
+        },
+        filetype = "ps1",
+        used_by = { "psm1", "psd1", "pssc", "psxml", "cdxml" }
+      }
+    end,
   },
 
   {
