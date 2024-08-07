@@ -8,9 +8,9 @@ local map = vim.keymap.set
 map({ "n", "v" }, ";", ":", { desc = "Enter command mode" })
 map({ "i" }, "jk", "<esc>", { desc = "Enter normal mode" })
 
--- Buffer Navigation
-map("n", "<tab>", ":bnext<CR>", { desc = "Next tab" })
-map("n", "<s-tab>", ":bprev<CR>", { desc = "Previous tab" })
+-- Buffer Navigation (bufferline dependency)
+map("n", "<tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<s-tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
 
 -- Line Navigation
 map("n", "H", "^", { desc = "Start of line" })
