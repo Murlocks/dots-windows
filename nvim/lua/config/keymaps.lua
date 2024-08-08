@@ -17,8 +17,8 @@ map({ "i" }, "jk", "<esc>", { desc = "Enter normal mode" })
 -- map("n", "L", "$", { desc = "End of line" })
 
 -- QOL
-map("n", "*", "*`'", { desc = "'*' but keep cursor place" })
-map("n", "#", "#`'", { desc = "'#' but keep cursor place" })
+map("n", "*", "*N", { desc = "'*' but keep cursor place" })
+map("n", "#", "#N", { desc = "'#' but keep cursor place" })
 map("n", "go", "m'o<esc>`'", { desc = "New line below cursor" })
 map("n", "gO", "m'O<esc>`'", { desc = "New line above cursor" })
 map("x", "gp", [["_dP]], { desc = "Put but don't yank text" })
