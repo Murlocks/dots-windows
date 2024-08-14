@@ -1,0 +1,172 @@
+{
+  "Items": [
+    {
+      "Query": "settings",
+      "ExecutedDateTime": "2024-04-09T17:40:42.0594265-04:00"
+    },
+    {
+      "Query": "flow launcher user",
+      "ExecutedDateTime": "2024-04-09T17:43:43.4680811-04:00"
+    },
+    {
+      "Query": "settings",
+      "ExecutedDateTime": "2024-04-09T18:15:16.7070152-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-05-30T18:42:36.021218-04:00"
+    },
+    {
+      "Query": "one note",
+      "ExecutedDateTime": "2024-05-31T12:53:04.3399032-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-06-02T21:18:31.41602-04:00"
+    },
+    {
+      "Query": "vnc",
+      "ExecutedDateTime": "2024-06-02T21:20:15.1917917-04:00"
+    },
+    {
+      "Query": "openvpn",
+      "ExecutedDateTime": "2024-06-04T13:03:23.2116867-04:00"
+    },
+    {
+      "Query": "powertoys",
+      "ExecutedDateTime": "2024-06-10T14:21:47.552278-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-06-10T15:26:34.2185211-04:00"
+    },
+    {
+      "Query": "pushb",
+      "ExecutedDateTime": "2024-06-10T18:15:13.4226774-04:00"
+    },
+    {
+      "Query": "teams",
+      "ExecutedDateTime": "2024-06-12T13:42:14.3996202-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-06-12T13:56:45.8361248-04:00"
+    },
+    {
+      "Query": "openvpn",
+      "ExecutedDateTime": "2024-06-12T13:58:44.2500705-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-06-14T15:26:55.4409152-04:00"
+    },
+    {
+      "Query": "open",
+      "ExecutedDateTime": "2024-06-17T10:18:59.7861304-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-06-17T10:22:54.5274411-04:00"
+    },
+    {
+      "Query": "openvpn",
+      "ExecutedDateTime": "2024-06-23T19:42:23.1212702-04:00"
+    },
+    {
+      "Query": "pushbu",
+      "ExecutedDateTime": "2024-06-26T16:05:40.0968416-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-07-03T19:37:12.3863423-04:00"
+    },
+    {
+      "Query": "citrix",
+      "ExecutedDateTime": "2024-07-21T22:07:21.8358857-04:00"
+    },
+    {
+      "Query": "ssms",
+      "ExecutedDateTime": "2024-07-22T16:36:00.8206437-04:00"
+    },
+    {
+      "Query": "op",
+      "ExecutedDateTime": "2024-07-23T13:45:08.1564222-04:00"
+    },
+    {
+      "Query": "citrix",
+      "ExecutedDateTime": "2024-07-29T16:51:47.9977607-04:00"
+    },
+    {
+      "Query": "teams",
+      "ExecutedDateTime": "2024-07-29T17:13:09.3527553-04:00"
+    },
+    {
+      "Query": "open",
+      "ExecutedDateTime": "2024-07-29T17:14:54.2854297-04:00"
+    },
+    {
+      "Query": "citrix",
+      "ExecutedDateTime": "2024-07-29T17:23:13.4097981-04:00"
+    },
+    {
+      "Query": "citri",
+      "ExecutedDateTime": "2024-08-05T21:42:32.8637926-04:00"
+    },
+    {
+      "Query": "citrix",
+      "ExecutedDateTime": "2024-08-05T22:00:15.7154523-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-08-05T22:57:24.9150953-04:00"
+    },
+    {
+      "Query": "s envir",
+      "ExecutedDateTime": "2024-08-06T01:57:38.4494552-04:00"
+    },
+    {
+      "Query": "citrix",
+      "ExecutedDateTime": "2024-08-06T13:19:48.2817855-04:00"
+    },
+    {
+      "Query": "s programs and",
+      "ExecutedDateTime": "2024-08-08T15:39:51.9855075-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-08-08T15:45:16.8920662-04:00"
+    },
+    {
+      "Query": "citri",
+      "ExecutedDateTime": "2024-08-08T18:18:46.1403338-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-08-08T22:49:06.0454902-04:00"
+    },
+    {
+      "Query": "open",
+      "ExecutedDateTime": "2024-08-09T14:55:41.1158763-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-08-09T16:40:48.9980792-04:00"
+    },
+    {
+      "Query": "s device mana",
+      "ExecutedDateTime": "2024-08-10T01:06:46.4506857-04:00"
+    },
+    {
+      "Query": "citrix",
+      "ExecutedDateTime": "2024-08-12T15:02:55.7370279-04:00"
+    },
+    {
+      "Query": "term",
+      "ExecutedDateTime": "2024-08-13T17:01:33.7912247-04:00"
+    },
+    {
+      "Query": "sett",
+      "ExecutedDateTime": "2024-08-14T16:56:13.1732476-04:00"
+    }
+  ]
+}

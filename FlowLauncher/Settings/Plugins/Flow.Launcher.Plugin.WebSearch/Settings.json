@@ -167,14 +167,6 @@
       "CustomIcon": false,
       "Url": "https://www.baidu.com/#ie=UTF-8\u0026wd={q}",
       "Enabled": true
-    },
-    {
-      "Title": "mal",
-      "ActionKeyword": "mal",
-      "Icon": "mal.png",
-      "CustomIcon": true,
-      "Url": "https://myanimelist.net/search/all?q={q}",
-      "Enabled": true
     }
   ],
   "EnableSuggestion": false,
