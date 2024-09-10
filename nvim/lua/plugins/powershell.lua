@@ -16,7 +16,7 @@ return {
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       parser_config.powershell = {
         install_info = {
-          url = "~/code/repos/tree-sitter-powershell", -- local path or git repo
+          url = "https://github.com/airbus-cert/tree-sitter-powershell", -- local path or git repo
           files = { "src/parser.c", "src/scanner.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
           -- optional entries:
           branch = "main", -- default branch in case of git repo if different from master
