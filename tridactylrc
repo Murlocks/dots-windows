@@ -53,4 +53,4 @@ autocmd DocStart mail.google.com mode ignore
 " command line, so set an option to move the status bar to the right.
 guiset_quiet hoverlink right
 
-autocmd DocLoad twitter.com urlmodify -t twitter.com nitter.net
+" autocmd DocLoad twitter.com urlmodify -t twitter.com nitter.net
