@@ -54,3 +54,5 @@ autocmd DocStart mail.google.com mode ignore
 guiset_quiet hoverlink right
 
 " autocmd DocLoad twitter.com urlmodify -t twitter.com nitter.net
+
+alias tabsort jsb browser.tabs.query({}).then(tabs => tabs.sort((t1, t2) => t1.url.localeCompare(t2.url)).forEach((tab, index) => browser.tabs.move(tab.id, {index})))
