@@ -29,17 +29,23 @@ class WindowMgr:
 
     def set_foreground(self):
         """put the window in the foreground"""
-        if win32gui.IsWindow(self._handle):
+        if self._handle and win32gui.IsWindow(self._handle):
             win32gui.SetForegroundWindow(self._handle)
 
 
-if __name__ == "__main__":
+def windows_to_wsl_path(windows_path):
+    # Match any drive letter followed by a colon and replace with /mnt/lowercase_letter
+    return re.sub(r"([A-Za-z]):", lambda m: f"/mnt/{m.group(1).lower()}", windows_path)
 
-    file_name = (
-        '"' + sys.argv[1] + '"'
-        if sys.argv[1].startswith("org-protocol")
-        else os.path.abspath(sys.argv[1]).replace("\\", "/").replace("C:", "/mnt/c")
-    )
+
+if __name__ == "__main__":
+    # file_name = (
+    #     '"' + sys.argv[1] + '"'
+    #     if re.match(r"[A-Za-z]:", sys.argv[1]) or sys.argv[1].startswith("org-protocol")
+    #     else os.path.abspath(sys.argv[1]).replace("\\", "/")
+    #     # else windows_to_wsl_path(os.path.abspath(sys.argv[1]).replace("\\", "/"))
+    # )
+    file_name = windows_to_wsl_path(os.path.abspath(sys.argv[1]).replace("\\", "/"))
 
     wsl_path_prefix = "//wsl$/Ubuntu/"
     if file_name.startswith(wsl_path_prefix):
